@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FnKqyI4+rRAze4sn4TOfZ8MwAEgZ7hP43GfKCLJBxM66RpH+Ne6FZ1RJORwFEZzIqIzvH5pDW808i4rpoDtSWw==",
+  "dgSpecHash": "v6e/deRv+NteQsFPat3DIiKiMudav1Q0Y4s3iYECAs5VSj7LPb6oZIslcNdRmDE3xs8QVwUGOd18EhEMNxKETg==",
   "success": true,
-  "projectFilePath": "/home/f33dir/Projects/InfoLab1/InfoLab1.csproj",
+  "projectFilePath": "/home/f33dir/projects/C#/infolab/InfoLab1.csproj",
   "expectedPackageFiles": [
     "/home/f33dir/.nuget/packages/avalonia/0.10.14/avalonia.0.10.14.nupkg.sha512",
     "/home/f33dir/.nuget/packages/avalonia.angle.windows.natives/2.1.0.2020091801/avalonia.angle.windows.natives.2.1.0.2020091801.nupkg.sha512",
