@@ -2,7 +2,7 @@
 
 namespace InfoLab1.ViewModels
 {
-    public class ViewModelBase : ReactiveObject
+    public class ViewModelBase : ReactiveObject 
     {
     }
 }

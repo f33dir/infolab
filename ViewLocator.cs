@@ -9,7 +9,7 @@ namespace InfoLab1
     {
         public IControl Build(object data)
         {
-            var name = data.GetType().FullName!.Replace("VM", "V");
+            var name = data.GetType().FullName!.Replace("ViewM", "View");
             var type = Type.GetType(name);
 
             if (type != null)

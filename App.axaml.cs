@@ -19,11 +19,16 @@ namespace InfoLab1
             {
                 desktop.MainWindow = new MainWindow
                 {
-                    DataContext = new MainWindowViewModel(),
+                    DataContext = new MainWindowViewM(),
                 };
             }
 
             base.OnFrameworkInitializationCompleted();
+        }
+
+        public void ChangeWindow()
+        {
+            
         }
     }
 }

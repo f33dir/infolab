@@ -16,5 +16,8 @@ build_property.ProjectDir = /home/f33dir/projects/C#/infolab/
 [/home/f33dir/projects/C\#/infolab/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/home/f33dir/projects/C\#/infolab/Views/MainWindowV.axaml]
+[/home/f33dir/projects/C\#/infolab/Views/LoginWindowView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/home/f33dir/projects/C\#/infolab/Views/MainWindowView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
