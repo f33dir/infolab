@@ -35,6 +35,7 @@ public class RegisterViewM : ReactiveObject
 
     public LoginResult Register()
     {
-        var result = _loginService.RegisterUser(_username, _password, _passwordRepeat);
+        return _loginService.RegisterUser(_username, _password, _passwordRepeat);
+        
     }
 }

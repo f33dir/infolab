@@ -70,14 +70,16 @@ public class LoginService
         return 0;
     }
 
-    public int ChangePassword(User user)
+    public int ChangePassword(String username, String password)
     {
-        var u = Credentials.Find(a => a.Username == user.Username);
-        if (u == null)
+        var i = 0;
+        while ( i< Credentials.Count && Credentials[i].Username  != username )
+            i++;
+        if (i > Credentials.Count)
         {
             return 1;
         }
-        u = user;
+        Credentials[i].Password = password;
         return 0;
     }
 
@@ -127,6 +129,8 @@ public class LoginService
 
         if (password == password2)
         {
+            if (password.Length == 0)
+                return LoginResult.BadPassword;
             bool valid= true;
             bool current = false;
             char[] arr = password.ToCharArray();
@@ -137,23 +141,20 @@ public class LoginService
                 if (current && Char.IsNumber(arr[i]))
                 {
                     valid = false;
-                    
-                }
-                else
-                {
-                    current = !current;
                     continue;
                 }
-
-                if (!current && Char.IsLetter(arr[i]))
+                 if (!current && Char.IsLetter(arr[i]))
                 {
                     valid = false;
+                    continue;                   
                 }
-                else
-                {
-                    current = !current;
-                }
+
+                current = !current;
             }
+
+            if (!valid) return LoginResult.BadPassword;
+            this.ChangePassword(username,password);
+            return LoginResult.Success;
         }
         else
         {

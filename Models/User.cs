@@ -52,7 +52,9 @@ public class User
     private String _username;
     private String _password;
     private Boolean _isAdmin;
-
+    
+    
+    
     public User(string username, string password, bool isAdmin,bool isNew = false)
     {
         ValidatePassword = true;

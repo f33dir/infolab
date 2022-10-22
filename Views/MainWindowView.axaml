@@ -8,5 +8,5 @@
         x:Class="InfoLab1.Views.MainWindowView"
         Icon="/Assets/avalonia-logo.ico"
         Title="InfoLab1">
-        <view:LoginView/>       
+             
 </Window>

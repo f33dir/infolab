@@ -11,7 +11,7 @@
             <Label>Password</Label>
             <TextBox Name="Pas" Margin="4" Text="{Binding Password}"></TextBox>
             <Label>Repeat Password</Label>
-            <TextBox Name="Password" Margin="4" Text="{Binding Password}"></TextBox>
+            <TextBox Name="Password" Margin="4" Text="{Binding PasswordRepeat}"></TextBox>
             <Button Name="Register"  Margin="4" Background="#13B21D" Click="Register_OnClick" Foreground="White">Register</Button>
             <Button Name="Auth"    HorizontalAlignment="Center" Click="Auth_OnClick"  BorderBrush="#FFFFFF" Foreground="#003DA2"  Margin="4">Log in</Button>
             <TextBlock Name="Error" TextWrapping="Wrap" TextAlignment="Center"  Padding="10"  Foreground="#F00707"  ></TextBlock>
