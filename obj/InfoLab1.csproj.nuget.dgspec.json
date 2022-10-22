@@ -40,19 +40,23 @@
           "dependencies": {
             "Avalonia": {
               "target": "Package",
-              "version": "[0.10.14, )"
+              "version": "[11.0.0-preview1, )"
             },
             "Avalonia.Desktop": {
               "target": "Package",
-              "version": "[0.10.14, )"
+              "version": "[11.0.0-preview1, )"
             },
             "Avalonia.Diagnostics": {
               "target": "Package",
-              "version": "[0.10.14, )"
+              "version": "[11.0.0-preview1, )"
             },
             "Avalonia.ReactiveUI": {
               "target": "Package",
-              "version": "[0.10.14, )"
+              "version": "[11.0.0-preview1, )"
+            },
+            "ChilkatDnCore": {
+              "target": "Package",
+              "version": "[9.5.0.92, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -91,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.401/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.402/RuntimeIdentifierGraph.json"
         }
       }
     }

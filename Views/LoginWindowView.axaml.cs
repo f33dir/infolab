@@ -1,12 +1,10 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using Avalonia.ReactiveUI;
-using InfoLab1.ViewModels;
 
 namespace InfoLab1.Views;
 
-public partial class LoginWindowView : ReactiveWindow<LoginWindowViewM>
+public partial class LoginWindowView : Window
 {
     public LoginWindowView()
     {

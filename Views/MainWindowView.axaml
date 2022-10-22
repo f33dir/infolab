@@ -5,14 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:InfoLab1.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="InfoLab1.Views.MainWindow"
+        x:Class="InfoLab1.Views.MainWindowView"
         Icon="/Assets/avalonia-logo.ico"
         Title="InfoLab1">
-        <Design.DataContext>
-                <viewModels:MainWindowViewM />
-        </Design.DataContext>
-        
-        <DockPanel>
-
-        </DockPanel>
+        <view:LoginView/>       
 </Window>

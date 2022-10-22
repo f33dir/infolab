@@ -1,6 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.ReactiveUI;
 using System;
+using Avalonia.Controls;
 
 namespace InfoLab1
 {
@@ -11,7 +12,7 @@ namespace InfoLab1
         // yet and stuff might break.
         [STAThread]
         public static void Main(string[] args) => BuildAvaloniaApp()
-            .StartWithClassicDesktopLifetime(args);
+            .StartWithClassicDesktopLifetime(args, ShutdownMode.OnLastWindowClose);
 
         // Avalonia configuration, don't remove; also used by visual designer.
         public static AppBuilder BuildAvaloniaApp()

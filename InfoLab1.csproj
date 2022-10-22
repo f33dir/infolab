@@ -20,11 +20,12 @@
         <TrimmableAssembly Include="Avalonia.Themes.Default" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="0.10.14" />
-        <PackageReference Include="Avalonia.Desktop" Version="0.10.14" />
+        <PackageReference Include="Avalonia" Version="11.0.0-preview1" />
+        <PackageReference Include="Avalonia.Desktop" Version="11.0.0-preview1" />
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.14" />
-        <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.14" />
+        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.0-preview1" />
+        <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.0-preview1" />
+        <PackageReference Include="ChilkatDnCore" Version="9.5.0.92" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0-rc.1.22426.7" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="7.0.0-rc.1.22426.7" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="7.0.0-rc.1.22426.7" />

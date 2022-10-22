@@ -6,20 +6,13 @@ using ReactiveUI;
 
 namespace InfoLab1.Views
 {
-    public partial class MainWindow : ReactiveWindow<MainWindowViewM>
+    public partial class MainWindowView : ReactiveWindow<MainWindowViewM>
     {
-        public MainWindow()
+        public MainWindowView()
         {
             InitializeComponent();
         }
-
-        private async Task DoShowDialogAsync(InteractionContext<LoginWindowViewM, MainWindowViewM?> interaction)
-        {
-            var dialog = new LoginWindowView();
-            dialog.DataContext = interaction.Input;
-
-            var res = await dialog.ShowDialog<MainWindowViewM?>(this);
-            interaction.SetOutput(res);
-        }
+        
+        
     }
 }

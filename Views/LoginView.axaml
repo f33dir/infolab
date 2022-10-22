@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:InfoLab1.Views"
+             xmlns:viewModels="clr-namespace:InfoLab1.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="InfoLab1.Views.LoginView">
+    
+    <DockPanel Width="300" Height="300" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel>
+            <Label>Username</Label>
+            <TextBox Name="Username" Text="{Binding Username}" Margin="4"  />
+            <Label>Password</Label>
+            <TextBox Name="Password" Margin="4" Text="{Binding Password}"></TextBox>
+            <Button Name="Auth" Click="Auth_OnClick"  Margin="4" Background="#13B21D" Foreground="White">Log in</Button>
+            <Button Name="Register" HorizontalAlignment="Center" Click="Register_OnClick" BorderBrush="#FFFFFF" Foreground="#003DA2"  Margin="4">Register</Button>
+            <TextBlock Name="Error" TextWrapping="Wrap" TextAlignment="Center"  Padding="10"  Foreground="#F00707"  ></TextBlock>
+        </StackPanel>
+    </DockPanel>
+</UserControl>

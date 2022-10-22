@@ -16,8 +16,26 @@ build_property.ProjectDir = /home/f33dir/projects/C#/infolab/
 [/home/f33dir/projects/C\#/infolab/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[/home/f33dir/projects/C\#/infolab/Views/LoginView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [/home/f33dir/projects/C\#/infolab/Views/LoginWindowView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[/home/f33dir/projects/C\#/infolab/Views/MainWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [/home/f33dir/projects/C\#/infolab/Views/MainWindowView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/home/f33dir/projects/C\#/infolab/Views/RegisterView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/home/f33dir/projects/C\#/infolab/Views/RegisterWindowView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/home/f33dir/projects/C\#/infolab/Views/TestUserControl.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/home/f33dir/projects/C\#/infolab/Views/TestWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
