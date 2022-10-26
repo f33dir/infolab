@@ -45,10 +45,10 @@ public class LoginViewM : ReactiveObject
     {
         var u = new User(_username, _password, false);
         var result =_loginService.Auth(u);
-        if (result == LoginResult.Success)
-        {
-            
-        }
+        // if (result == LoginResult.Success)
+        // {
+        //     
+        // }
 
         return result;
     }

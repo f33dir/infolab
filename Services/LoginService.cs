@@ -14,7 +14,7 @@ public class LoginService
 {
     private static LoginService _loginService;
     public List<User> Credentials = new List<User>();
-
+    public User CurrentUser;
              
     public static LoginService get()
     {
@@ -51,6 +51,7 @@ public class LoginService
         {
             if (user.Password == Credentials[i].Password)
             {
+                CurrentUser = Credentials[i];
                 return LoginResult.Success;
             }
             else
@@ -162,7 +163,7 @@ public class LoginService
         }
     }
 
-    ~LoginService()
+    public void SaveCredentials()
     {
         var file = File.Create("data.json");
         file.Write(JsonSerializer.SerializeToUtf8Bytes(Credentials));

@@ -38,6 +38,9 @@ public partial class LoginView : ReactiveUserControl<LoginViewM>
             case LoginResult.NoUser:
                 error.Text = "Пользователь не найден";
                 break;
+            case LoginResult.Success:
+                ShowMainWindow();
+                break;
         }
     }
 
@@ -45,6 +48,13 @@ public partial class LoginView : ReactiveUserControl<LoginViewM>
     {
         var register = new RegisterWindowView();
         register.Show();
+        ((Window)this.Parent).Close();
+    }
+
+    private void ShowMainWindow()
+    {
+        var w = new MainWindow();
+        w.Show();
         ((Window)this.Parent).Close();
     }
 }
