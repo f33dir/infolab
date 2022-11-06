@@ -13,7 +13,7 @@ public enum LoginResult
 public class LoginService
 {
     private static LoginService _loginService;
-    public List<User> Credentials = new List<User>();
+    public List<User> Credentials;
     public User CurrentUser;
              
     public static LoginService get()
@@ -155,6 +155,7 @@ public class LoginService
 
             if (!valid) return LoginResult.BadPassword;
             this.ChangePassword(username,password);
+            SaveCredentials();
             return LoginResult.Success;
         }
         else
@@ -167,5 +168,6 @@ public class LoginService
     {
         var file = File.Create("data.json");
         file.Write(JsonSerializer.SerializeToUtf8Bytes(Credentials));
+        file.Close();
     }
 }

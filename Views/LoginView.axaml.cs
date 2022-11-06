@@ -53,8 +53,9 @@ public partial class LoginView : ReactiveUserControl<LoginViewM>
 
     private void ShowMainWindow()
     {
-        var w = new MainWindow();
+        var w = new MainWindowView();
         w.Show();
+        
         ((Window)this.Parent).Close();
     }
 }

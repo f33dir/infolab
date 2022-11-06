@@ -12,7 +12,7 @@
             <Label>Username</Label>
             <TextBox Name="Username" Text="{Binding Username}" Margin="4"  />
             <Label>Password</Label>
-            <TextBox Name="Password" Margin="4" Text="{Binding Password}"></TextBox>
+            <TextBox Name="Password" Margin="4"  PasswordChar="*" Text="{Binding Password}"></TextBox>
             <Button Name="Auth" Click="Auth_OnClick"  Margin="4" Background="#13B21D" Foreground="White">Log in</Button>
             <Button Name="Register" HorizontalAlignment="Center" Click="Register_OnClick" BorderBrush="#FFFFFF" Foreground="#003DA2"  Margin="4">Register</Button>
             <TextBlock Name="Error" TextWrapping="Wrap" TextAlignment="Center"  Padding="10"  Foreground="#F00707"  ></TextBlock>

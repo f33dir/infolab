@@ -4,7 +4,32 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="InfoLab1.Views.MainView">
-    <DataGrid Name="Users">
-        
-    </DataGrid>
+    <StackPanel IsVisible="{Binding !AuthService.CurrentUser.IsAdmin}">
+        <Grid ColumnDefinitions="5*,5*">
+        <StackPanel Grid.Column="0">
+            <ListBox  Name="Users" Items="{Binding Users}" SelectionMode="Single" SelectionChanged="Users_OnSelectionChanged" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="">
+                            <TextBlock Text="{Binding Username}"/>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+            <DockPanel Grid.Column="1" IsVisible="{Binding ShowEditPanel}">
+                <StackPanel DockPanel.Dock="Top"  >
+                    <Label>Имя пользователя</Label>
+                    <TextBox Margin="2,0,5,0" Name="Username" Text="{Binding SelectedUser.Username}"></TextBox>
+                    <Label>Пароль</Label>
+                    <TextBox Margin="2,0,5,0" Name="Password" Watermark="Введите новый пароль для изменения текущего"></TextBox>
+                    <StackPanel  Orientation="Horizontal" Margin="2,10,0,0">
+                        <CheckBox Name="AdminCheckBox" IsChecked="{Binding SelectedUser.IsAdmin}"></CheckBox>
+                        <TextBlock Text="Админ"></TextBlock>
+                    </StackPanel>
+                </StackPanel>
+                <Button Margin="4" Background="#13B21D" Foreground="White">Сохранить</Button>
+            </DockPanel>
+        </Grid>
+    </StackPanel>
 </UserControl>

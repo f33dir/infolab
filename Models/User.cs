@@ -1,6 +1,7 @@
 using System;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json.Serialization;
 using Chilkat;
 
 namespace InfoLab1.Models;
@@ -66,5 +67,14 @@ public class User
         {
             _password = null;
         }
+    }
+
+    [JsonConstructor]
+    public User(Boolean isBanned,Boolean isAdmin,String Username,String Password)
+    {
+        _isBanned = isBanned;
+        _isAdmin = isAdmin;
+        _username = Username;
+        _password = Password;
     }
 }
