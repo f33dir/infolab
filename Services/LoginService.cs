@@ -15,7 +15,8 @@ public enum LoginResult
 }
 public class LoginService
 {
-    private byte[] key = Encoding.ASCII.GetBytes("1234567890qwerty");
+    private byte[] key = Encoding.UTF8.GetBytes("1234567890qwerty");
+    private byte[] IV = Encoding.UTF8.GetBytes("1234567890qwertg");
     private static LoginService _loginService;
     public AvaloniaList<User> Credentials;
     public User CurrentUser;
@@ -116,15 +117,19 @@ public class LoginService
     {
         Credentials = new AvaloniaList<User>();
         Credentials.Add(new User("ADMIN","",true,true));
-        Aes
+        _aes = new AesManaged();
+        _aes.Mode = CipherMode.CBC;
+        _aes.Padding = PaddingMode.Zeros;
+        _aes.Key = key;
+        _aes.IV = IV;
         String file;
         byte[] source;
         try {
             source = File.ReadAllBytes("data.json");
-            this.DecryptStringFromBytes_Aes(source,key);
+            var input = DecryptStringFromBytes(source,key,IV);
             try
             {
-                Credentials = new AvaloniaList<User>(JsonSerializer.Deserialize<List<User>>(source) ?? throw new InvalidOperationException());
+                Credentials = new AvaloniaList<User>(JsonSerializer.Deserialize<List<User>>(input) ?? throw new InvalidOperationException());
             }
             catch (Exception e)
             {
@@ -135,17 +140,95 @@ public class LoginService
         }
         catch (Exception e)
         {
-            var s= Encoding.ASCII.GetBytes(JsonSerializer.Serialize(Credentials));
-            File.WriteAllText("data.json",DecryptStringFromBytes_Aes(s,key));
-            Console.WriteLine(e);
+            SaveCredentials();
+            DecryptStringFromBytes(File.ReadAllBytes("data.json"),key,IV);
         }
     
     }
 
-    private string? DecryptStringFromBytes_Aes(byte[] source, byte[] bytes)
-    {
-        Aes
-    }
+   static byte[] EncryptStringToBytes(string plainText, byte[] Key, byte[] IV)
+        {
+            // Check arguments.
+            if (plainText == null || plainText.Length <= 0)
+                throw new ArgumentNullException("plainText");
+            if (Key == null || Key.Length <= 0)
+                throw new ArgumentNullException("Key");
+            if (IV == null || IV.Length <= 0)
+                throw new ArgumentNullException("IV");
+            byte[] encrypted;
+            // Create an Rijndael object
+            // with the specified key and IV.
+            using (Rijndael rijAlg = Rijndael.Create())
+            {
+                rijAlg.Key = Key;
+                rijAlg.IV = IV;
+
+                // Create an encryptor to perform the stream transform.
+                ICryptoTransform encryptor = rijAlg.CreateEncryptor(rijAlg.Key, rijAlg.IV);
+
+                // Create the streams used for encryption.
+                using (MemoryStream msEncrypt = new MemoryStream())
+                {
+                    using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                    {
+                        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
+                        {
+
+                            //Write all data to the stream.
+                            swEncrypt.Write(plainText);
+                        }
+                        encrypted = msEncrypt.ToArray();
+                    }
+                }
+            }
+
+            // Return the encrypted bytes from the memory stream.
+            return encrypted;
+        }
+
+        static string DecryptStringFromBytes(byte[] cipherText, byte[] Key, byte[] IV)
+        {
+            // Check arguments.
+            if (cipherText == null || cipherText.Length <= 0)
+                throw new ArgumentNullException("cipherText");
+            if (Key == null || Key.Length <= 0)
+                throw new ArgumentNullException("Key");
+            if (IV == null || IV.Length <= 0)
+                throw new ArgumentNullException("IV");
+
+            // Declare the string used to hold
+            // the decrypted text.
+            string plaintext = null;
+
+            // Create an Rijndael object
+            // with the specified key and IV.
+            using (Rijndael rijAlg = Rijndael.Create())
+            {
+                rijAlg.Key = Key;
+                rijAlg.IV = IV;
+
+                // Create a decryptor to perform the stream transform.
+                ICryptoTransform decryptor = rijAlg.CreateDecryptor(rijAlg.Key, rijAlg.IV);
+
+                // Create the streams used for decryption.
+                using (MemoryStream msDecrypt = new MemoryStream(cipherText))
+                {
+                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                    {
+                        using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+                        {
+
+                            // Read the decrypted bytes from the decrypting stream
+                            // and place them in a string.
+                            plaintext = srDecrypt.ReadToEnd();
+                        }
+                    }
+                }
+            }
+
+            return plaintext;
+        }
+    
 
     public LoginResult RegisterUser(String username,String password,String password2)
     {
@@ -199,9 +282,7 @@ public class LoginService
 
     public void SaveCredentials()
     {
-        var file = File.Create("data.json");
-        file.Write(JsonSerializer.SerializeToUtf8Bytes(Credentials));
-        file.Close();
+        File.WriteAllBytes("data.json",EncryptStringToBytes(Encoding.UTF8.GetString(JsonSerializer.SerializeToUtf8Bytes(Credentials)),key,IV));
     }
 
     ~LoginService()

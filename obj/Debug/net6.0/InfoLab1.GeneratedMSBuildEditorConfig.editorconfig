@@ -11,34 +11,34 @@ build_property.InvariantGlobalization =
 build_property.PlatformNeutralAssembly = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = InfoLab1
-build_property.ProjectDir = /home/f33dir/Projects/infolab/
+build_property.ProjectDir = /home/f33dir/projects/C#/infolab/
 
-[/home/f33dir/Projects/infolab/App.axaml]
+[/home/f33dir/projects/C\#/infolab/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/home/f33dir/Projects/infolab/Views/LoginView.axaml]
+[/home/f33dir/projects/C\#/infolab/Views/LoginView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/home/f33dir/Projects/infolab/Views/LoginWindowView.axaml]
+[/home/f33dir/projects/C\#/infolab/Views/LoginWindowView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/home/f33dir/Projects/infolab/Views/MainView.axaml]
+[/home/f33dir/projects/C\#/infolab/Views/MainView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/home/f33dir/Projects/infolab/Views/MainWindow.axaml]
+[/home/f33dir/projects/C\#/infolab/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/home/f33dir/Projects/infolab/Views/MainWindowView.axaml]
+[/home/f33dir/projects/C\#/infolab/Views/MainWindowView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/home/f33dir/Projects/infolab/Views/RegisterView.axaml]
+[/home/f33dir/projects/C\#/infolab/Views/RegisterView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/home/f33dir/Projects/infolab/Views/RegisterWindowView.axaml]
+[/home/f33dir/projects/C\#/infolab/Views/RegisterWindowView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/home/f33dir/Projects/infolab/Views/TestUserControl.axaml]
+[/home/f33dir/projects/C\#/infolab/Views/TestUserControl.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/home/f33dir/Projects/infolab/Views/TestWindow.axaml]
+[/home/f33dir/projects/C\#/infolab/Views/TestWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

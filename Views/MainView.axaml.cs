@@ -37,8 +37,8 @@ public partial class MainView : UserControl
 
     private void SaveButton_OnClick(object? sender, RoutedEventArgs e)
     {
-        VM.CurrentUser.Password = PasswordConrol.Text;
         VM.LoginService.UpdateUsers(VM.Users);
+        VM.SelectedUser.Password = PasswordConrol.Text;
         VM.LoginService.SaveCredentials();
     }
 
