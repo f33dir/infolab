@@ -19,11 +19,16 @@ public partial class LoginView : ReactiveUserControl<LoginViewM>
         DataContext = VM;
         InitializeComponent();
         error = this.FindControl<TextBlock>("Error");
+        if (this.VM.IsBroken)
+        {
+            ((Window)this.Parent).Close();
+        }
     }
 
     private void InitializeComponent()
     {
         AvaloniaXamlLoader.Load(this);
+        
     }
 
     private void Auth_OnClick(object? sender, RoutedEventArgs e)

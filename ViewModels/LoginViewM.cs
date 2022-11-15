@@ -16,11 +16,13 @@ public class LoginViewM : ReactiveObject
     private String _password;
     private String _username;
     private bool _islogged;
+    public bool IsBroken;
     
     public LoginViewM()
     {
         IsLogged = false;
         _loginService = LoginService.get();
+        IsBroken = this._loginService.IsBroken;
     }
     
     public String Password

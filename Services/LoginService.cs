@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.Json;
+using Avalonia.Collections;
 using InfoLab1.Models;
 using Avalonia.Diagnostics;
 namespace InfoLab1.Services;
@@ -12,18 +15,18 @@ public enum LoginResult
 }
 public class LoginService
 {
+    private byte[] key = Encoding.ASCII.GetBytes("1234567890qwerty");
     private static LoginService _loginService;
-    public List<User> Credentials;
+    public AvaloniaList<User> Credentials;
     public User CurrentUser;
-             
+    private Aes _aes;
+    public bool IsBroken = false;
     public static LoginService get()
     {
         if (_loginService == null)
         {
             _loginService = new LoginService();
-            _loginService.Init(); 
-
-
+            _loginService.Init();
             return _loginService;
         }
         else
@@ -65,12 +68,25 @@ public class LoginService
         }
     }
 
+    public User Find(String Username)
+    {
+        int index = -1;
+        var i = 0;
+        while ( i< Credentials.Count && Credentials[i].Username  != Username )
+            i++;
+        if (i < Credentials.Count)
+        {
+            return Credentials[i];
+        }
+        return null;
+    }
+
     public int AddUser(User user)
     {
         Credentials.Add(user);
         return 0;
     }
-
+    
     public int ChangePassword(String username, String password)
     {
         var i = 0;
@@ -86,7 +102,7 @@ public class LoginService
 
     public int SetAdmin(User user)
     {
-        var u = Credentials.Find(a => a.Username == user.Username);
+        var u = Find(user.Username);
         if (u == null)
         {
             return 1;
@@ -98,26 +114,43 @@ public class LoginService
 
     private void Init()
     {
-        Credentials = new List<User>();
+        Credentials = new AvaloniaList<User>();
         Credentials.Add(new User("ADMIN","",true,true));
+        Aes
         String file;
+        byte[] source;
         try {
-            file = File.ReadAllText("data.json");
-            Credentials = JsonSerializer.Deserialize<List<User>>(file) ?? throw new InvalidOperationException();
+            source = File.ReadAllBytes("data.json");
+            this.DecryptStringFromBytes_Aes(source,key);
+            try
+            {
+                Credentials = new AvaloniaList<User>(JsonSerializer.Deserialize<List<User>>(source) ?? throw new InvalidOperationException());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                IsBroken = true;
+                throw;
+            }
         }
         catch (Exception e)
         {
-            var s= JsonSerializer.Serialize<List<User>>(Credentials);
-            File.WriteAllText("data.json",s);
+            var s= Encoding.ASCII.GetBytes(JsonSerializer.Serialize(Credentials));
+            File.WriteAllText("data.json",DecryptStringFromBytes_Aes(s,key));
             Console.WriteLine(e);
         }
     
     }
 
+    private string? DecryptStringFromBytes_Aes(byte[] source, byte[] bytes)
+    {
+        Aes
+    }
+
     public LoginResult RegisterUser(String username,String password,String password2)
     {
-        
-        var u = Credentials.Find(a => a.Username == username);
+
+        var u = Find(username);
         if (u == null)
         {
             return LoginResult.NoUser;
@@ -170,4 +203,15 @@ public class LoginService
         file.Write(JsonSerializer.SerializeToUtf8Bytes(Credentials));
         file.Close();
     }
+
+    ~LoginService()
+    {
+        SaveCredentials();
+    }
+
+    public void UpdateUsers(AvaloniaList<User> list)
+    {
+        this.Credentials = list;
+    }
+    
 }
