@@ -126,9 +126,9 @@ public class LoginService
         byte[] source;
         try {
             source = File.ReadAllBytes("data.json");
-            var input = DecryptStringFromBytes(source,key,IV);
             try
             {
+                var input = DecryptStringFromBytes(source,key,IV);
                 Credentials = new AvaloniaList<User>(JsonSerializer.Deserialize<List<User>>(input) ?? throw new InvalidOperationException());
             }
             catch (Exception e)
@@ -140,8 +140,8 @@ public class LoginService
         }
         catch (Exception e)
         {
-            SaveCredentials();
-            DecryptStringFromBytes(File.ReadAllBytes("data.json"),key,IV);
+           
+            // SaveCredentials();
         }
     
     }
@@ -246,7 +246,8 @@ public class LoginService
 
         if (password == password2)
         {
-            if (password.Length == 0)
+            
+            if (String.IsNullOrEmpty(password))
                 return LoginResult.BadPassword;
             bool valid= true;
             bool current = false;
@@ -287,12 +288,63 @@ public class LoginService
 
     ~LoginService()
     {
-        SaveCredentials();
     }
 
     public void UpdateUsers(AvaloniaList<User> list)
     {
         this.Credentials = list;
     }
-    
+
+    public LoginResult UpdatePassword(String username, String password, String password2)
+    {
+        
+        var u = Find(username);
+        if (u == null)
+        {
+            return LoginResult.NoUser;
+        }
+
+        if (!u.ValidatePassword)
+        {
+            this.ChangePassword(username,password);
+            SaveCredentials();
+            return LoginResult.Success;
+        }
+
+        if (password == password2)
+        {
+            
+            if (String.IsNullOrEmpty(password))
+                return LoginResult.BadPassword;
+            bool valid= true;
+            bool current = false;
+            char[] arr = password.ToCharArray();
+            if (Char.IsNumber(arr[0]))
+                current = true;
+            for (int i = 1; i < password.Length; i++)
+            {
+                if (current && Char.IsNumber(arr[i]))
+                {
+                    valid = false;
+                    continue;
+                }
+                if (!current && Char.IsLetter(arr[i]))
+                {
+                    valid = false;
+                    continue;                   
+                }
+
+                current = !current;
+            }
+
+            if (!valid) return LoginResult.BadPassword;
+            this.ChangePassword(username,password);
+            SaveCredentials();
+            return LoginResult.Success;
+        }
+        else
+        {
+            return LoginResult.DifferentPasswords;
+        }
+    }
 }

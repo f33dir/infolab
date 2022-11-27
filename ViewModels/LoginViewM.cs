@@ -5,6 +5,7 @@ using System.Windows.Input;
 using Avalonia.Interactivity;
 using InfoLab1.Models;
 using InfoLab1.Services;
+using InfoLab1.Views;
 using ReactiveUI;
 
 namespace InfoLab1.ViewModels;
@@ -18,11 +19,24 @@ public class LoginViewM : ReactiveObject
     private bool _islogged;
     public bool IsBroken;
     
+    public ICommand ShowError { get; }
+
+    public Interaction<ErrorDialogView, Unit> ShowDialog { get; }
+    
     public LoginViewM()
     {
         IsLogged = false;
         _loginService = LoginService.get();
         IsBroken = this._loginService.IsBroken;
+        ShowError = ReactiveCommand.CreateFromTask(async () =>
+        {
+            var error = new ErrorDialogView();
+            var result = await ShowDialog.Handle(error);
+        });
+        if (IsBroken)
+        {
+            
+        }
     }
     
     public String Password

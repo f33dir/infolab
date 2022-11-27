@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="InfoLab1.Views.MainView">
-    <Panel IsVisible="{Binding AdminMode}">
-        <Grid ColumnDefinitions="5*,5*">
+    <Panel>
+        <Grid ColumnDefinitions="5*,5*" IsVisible="{Binding AdminMode}">
             <DockPanel Grid.Column="0" LastChildFill="False">
                 <StackPanel DockPanel.Dock="Top">
                 <ListBox  Name="Users" Items="{Binding Users}" SelectionMode="Single" SelectionChanged="Users_OnSelectionChanged" >
@@ -32,10 +32,23 @@
                     <StackPanel  Orientation="Horizontal" Margin="2,10,0,0">
                         <CheckBox Name="AdminCheckBox" IsChecked="{Binding SelectedUser.IsAdmin}"></CheckBox>
                         <TextBlock Text="Админ"></TextBlock>
+                        <CheckBox Name="PassCheckBox" IsChecked="{Binding SelectedUser.ValidatePassword}"></CheckBox>
+                        <TextBlock Text="Админ"></TextBlock>
                     </StackPanel>
                 </StackPanel>
                 <Button Click="SaveButton_OnClick" Margin="4" Background="#13B21D" Name="SaveButton" DockPanel.Dock="Bottom" Height="50" Foreground="White">Сохранить</Button>
             </DockPanel>
-        </Grid>
+        </Grid> 
+        <DockPanel Width="300" Height="300" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel IsVisible="{Binding !AdminMode}">
+            <TextBlock Text="Cменить пароль" Margin="4" ></TextBlock>
+            <Label>Пароль</Label>
+            <TextBox Margin="4"  Name="UserPassword1"></TextBox>
+            <Label>Повторите пароль</Label>
+            <TextBox Margin="4" Name="UserPassword2"></TextBox>
+            <Button Margin="4"  Name="ChangePassword" Click="ChangePassword_OnClick">Применить</Button>
+            <TextBlock Name="Error" TextWrapping="Wrap" TextAlignment="Center"  Padding="10"  Foreground="#F00707"  ></TextBlock>
+        </StackPanel>
+        </DockPanel>
     </Panel>
 </UserControl>

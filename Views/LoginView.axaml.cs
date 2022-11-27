@@ -1,3 +1,4 @@
+using System.Reactive;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Mixins;
@@ -13,18 +14,25 @@ public partial class LoginView : ReactiveUserControl<LoginViewM>
 {
     private LoginViewM VM;
     public TextBlock error;
+    protected override void OnLoaded()
+    {
+        base.OnLoaded();
+        if (this.VM.IsBroken)
+        {
+            var window = new ErrorDialogView();
+            window.Show();
+            ((Window)(this.Parent)).Close();
+        }
+    }
+    
     public LoginView()
     {
         this.VM = new LoginViewM();
         DataContext = VM;
         InitializeComponent();
         error = this.FindControl<TextBlock>("Error");
-        if (this.VM.IsBroken)
-        {
-            ((Window)this.Parent).Close();
-        }
+        
     }
-
     private void InitializeComponent()
     {
         AvaloniaXamlLoader.Load(this);
